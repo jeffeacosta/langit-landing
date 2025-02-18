@@ -4,15 +4,15 @@ export default function Home() {
     <div className="relative bg-gradient-to-r from-[#0a0a0a] to-[#1a1a2e] text-white min-h-screen flex flex-col items-center px-6 pt-20 pb-20">
     <BackgroundAnimation />
 {/* Header */}
-<header className="absolute top-0 left-0 w-full flex items-center justify-between p-4 sm:p-6 flex-nowrap">
-  <div className="text-xl sm:text-2xl font-bold text-primary whitespace-nowrap flex-shrink-0">
+<header className="absolute top-0 left-0 w-full flex items-center justify-between p-4 sm:p-6">
+  <div className="text-2xl font-bold text-primary whitespace-nowrap">
     Langit.ai
   </div>
-  <div className="flex items-center space-x-4 flex-shrink-0">
-    <button className="bg-primary text-black px-4 py-3 rounded-lg font-bold hover:bg-blue-300 transition-all duration-300 whitespace-nowrap">
+  <div className="hidden sm:flex space-x-4">
+    <button className="bg-primary text-black px-4 py-2 rounded-lg font-bold hover:bg-blue-300 transition-all duration-300 whitespace-nowrap">
       Create Free Website
     </button>
-    <button className="border border-primary text-primary px-4 py-3 rounded-lg font-bold hover:bg-primary hover:text-black transition-all duration-300 whitespace-nowrap">
+    <button className="border border-primary text-primary px-4 py-2 rounded-lg font-bold hover:bg-primary hover:text-black transition-all duration-300 whitespace-nowrap">
       Sign In
     </button>
   </div>
