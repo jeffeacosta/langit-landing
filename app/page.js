@@ -1,63 +1,20 @@
-import { useState } from "react";
 import BackgroundAnimation from "@/components/BackgroundAnimation";
-
 export default function Home() {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div className="relative bg-gradient-to-r from-[#0a0a0a] to-[#1a1a2e] text-white min-h-screen flex flex-col items-center px-6 pt-20 pb-20">
-      <BackgroundAnimation />
-      {/* Header */}
-      <header className="absolute top-0 left-0 w-full flex flex-col md:flex-row justify-between items-center p-4 md:p-6">
-        <div className="text-xl md:text-2xl font-bold text-primary">Langit.ai</div>
-        {/* Desktop Buttons */}
-        <div className="hidden md:flex space-x-4">
-          <button className="bg-primary text-black px-4 py-2 rounded-lg font-bold hover:bg-blue-300 transition-all duration-300">
-            Create Free Website
-          </button>
-          <button className="border border-primary text-primary px-4 py-2 rounded-lg font-bold hover:bg-primary hover:text-black transition-all duration-300">
-            Sign In
-          </button>
-        </div>
-        {/* Mobile Dropdown */}
-        <div className="md:hidden relative">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-primary focus:outline-none"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 8h16M4 16h16"
-              ></path>
-            </svg>
-          </button>
-          {isOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-cardDark rounded-md shadow-lg py-2 z-10">
-              <button
-                className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-blue-300 transition-all duration-300"
-                onClick={() => setIsOpen(false)}
-              >
-                Create Free Website
-              </button>
-              <button
-                className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-blue-300 transition-all duration-300"
-                onClick={() => setIsOpen(false)}
-              >
-                Sign In
-              </button>
-            </div>
-          )}
-        </div>
-      </header>
+    <BackgroundAnimation />
+    {/* Header */}
+<header className="absolute top-0 left-0 w-full flex flex-col md:flex-row justify-between items-center p-4 md:p-6">
+  <div className="text-xl md:text-2xl font-bold text-primary">Langit.ai</div>
+  <div className="flex space-x-2 md:space-x-4">
+    <button className="bg-primary text-black px-2 py-1 md:px-4 md:py-2 rounded-lg font-bold hover:bg-blue-300 transition-all duration-300">
+      Create Free Website
+    </button>
+    <button className="border border-primary text-primary px-2 py-1 md:px-4 md:py-2 rounded-lg font-bold hover:bg-primary hover:text-black transition-all duration-300">
+      Sign In
+    </button>
+  </div>
+</header>
     <div className="max-w-3xl text-center mt-24">
       <h1 className="text-4xl md:text-6xl font-bold text-primary">
         Build Your Website in Seconds with AI
