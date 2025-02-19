@@ -1,20 +1,90 @@
+import { useState } from "react";
 import BackgroundAnimation from "@/components/BackgroundAnimation";
+
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="relative bg-gradient-to-r from-[#0a0a0a] to-[#1a1a2e] text-white min-h-screen flex flex-col items-center px-6 pt-20 pb-20">
-    <BackgroundAnimation />
-{/* Header */}
-<header className="absolute top-0 left-0 w-full flex justify-between items-center p-6">
-  <div className="text-2xl font-bold text-primary">Langit.ai</div>
-  <div className="flex space-x-4">
-    <button className="bg-primary text-black px-4 py-2 rounded-lg font-bold hover:bg-blue-300 transition-all duration-300">
-      Create Free Website
-    </button>
-    <button className="border border-primary text-primary px-4 py-2 rounded-lg font-bold hover:bg-primary hover:text-black transition-all duration-300">
-      Sign In
-    </button>
-  </div>
-</header>
+      <BackgroundAnimation />
+
+      {/* Header */}
+      <header className="absolute top-0 left-0 w-full p-4 sm:p-6">
+        <div className="max-w-screen-lg mx-auto flex items-center justify-between relative">
+          {/* Logo */}
+          <div className="text-2xl font-bold text-primary whitespace-nowrap">
+            Langit.ai
+          </div>
+
+          {/* Desktop Buttons: visible on screens ≥640px */}
+          <div className="hidden sm:flex space-x-4">
+            <button className="bg-primary text-black px-4 py-2 rounded-lg font-bold hover:bg-blue-300 transition-all duration-300">
+              Create Free Website
+            </button>
+            <button className="border border-primary text-primary px-4 py-2 rounded-lg font-bold hover:bg-primary hover:text-black transition-all duration-300">
+              Sign In
+            </button>
+          </div>
+
+          {/* Mobile Hamburger Menu: visible on screens <640px */}
+          <div className="sm:hidden">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="text-primary focus:outline-none"
+            >
+              {menuOpen ? (
+                // Close icon (X)
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                // Hamburger icon
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </button>
+            {menuOpen && (
+              <div className="absolute right-0 top-full mt-2 w-48 bg-cardDark rounded-md shadow-lg py-2 z-20">
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-blue-300 transition-all duration-300"
+                >
+                  Create Free Website
+                </button>
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-blue-300 transition-all duration-300"
+                >
+                  Sign In
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </header>
     <div className="max-w-3xl text-center mt-24">
       <h1 className="text-4xl md:text-6xl font-bold text-primary">
         Build Your Website in Seconds with AI
