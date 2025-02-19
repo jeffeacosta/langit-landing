@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import BackgroundAnimation from "@/components/BackgroundAnimation";
 
@@ -28,29 +30,29 @@ export default function Home() {
 
           {/* Mobile Hamburger Menu: visible on screens <640px */}
           <div className="sm:hidden relative">
-  <button
-    onClick={() => setMenuOpen(!menuOpen)}
-    className="text-primary focus:outline-none border border-red-500 px-2 py-1"
-  >
-    {menuOpen ? "Close" : "Menu"}
-  </button>
-  {menuOpen && (
-    <div className="absolute right-0 top-full mt-2 w-48 bg-cardDark rounded-md shadow-lg py-2 z-20">
-      <button
-        onClick={() => setMenuOpen(false)}
-        className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-blue-300 transition-all duration-300"
-      >
-        Create Free Website
-      </button>
-      <button
-        onClick={() => setMenuOpen(false)}
-        className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-blue-300 transition-all duration-300"
-      >
-        Sign In
-      </button>
-    </div>
-  )}
-</div>
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="text-primary focus:outline-none border border-red-500 px-2 py-1"
+            >
+              {menuOpen ? "Close" : "Menu"}
+            </button>
+            {menuOpen && (
+              <div className="absolute right-0 top-full mt-2 w-48 bg-cardDark rounded-md shadow-lg py-2 z-20">
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-blue-300 transition-all duration-300"
+                >
+                  Create Free Website
+                </button>
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-blue-300 transition-all duration-300"
+                >
+                  Sign In
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </header>
     <div className="max-w-3xl text-center mt-24">
