@@ -135,7 +135,15 @@ export default function Home() {
           />
         </div>
       </section>
-
+{/* Why Langit? Section */}
+<section className="mt-20 max-w-4xl mx-auto text-center">
+  <h2 className="text-3xl md:text-4xl font-bold text-primary">
+    Why Langit?
+  </h2>
+  <p className="mt-4 text-lg text-textLight">
+    The most intuitive AI website builder ever with next-level simplicity 🚀. Langit lets you create stunning, responsive websites using just natural language. Simply describe your vision, and our AI crafts it into a fully functional site in seconds 💡. Enjoy a smooth back-and-forth to fine-tune every detail 🤖, ensuring your site is exactly how you want it. Say goodbye to clunky drag-and-drop tools and hello to effortless website creation!
+  </p>
+</section>
 {/* Email Capture Section */}
 <section className="mt-20 max-w-3xl text-center">
   <h2 className="text-3xl md:text-4xl font-bold text-primary">
