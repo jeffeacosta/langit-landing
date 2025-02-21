@@ -92,7 +92,7 @@ export default function Home() {
         Fire Your Web Designer. Build a Stunning Website in Seconds with AI.
       </h1>
       <p className="mt-4 text-lg text-textLight">
-        No code. No hassle. Just describe it, and Langit builds it for you.
+        Describe it. Watch it come to life. No tech skills needed.
       </p>
       <button className="mt-6 bg-primary text-black px-8 py-4 rounded-xl text-lg font-bold 
         hover:bg-blue-300 hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 ease-in-out">
