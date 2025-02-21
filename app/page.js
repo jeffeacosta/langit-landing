@@ -89,7 +89,7 @@ export default function Home() {
       </header>
     <div className="max-w-3xl text-center mt-24">
       <h1 className="text-4xl md:text-6xl font-bold text-primary">
-        Build Your Website in Seconds with AI
+        Fire Your Web Designer. Build a Stunning Website in Seconds with AI.
       </h1>
       <p className="mt-4 text-lg text-textLight">
         No code. No hassle. Just describe it, and Langit builds it for you.
