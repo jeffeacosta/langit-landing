@@ -141,7 +141,7 @@ export default function Home() {
     Why Langit?
   </h2>
   <p className="mt-4 text-lg text-textLight">
-    The most intuitive AI website builder ever with next-level simplicity 🚀. Langit lets you create stunning, responsive websites using just natural language. Simply describe your vision, and our AI crafts it into a fully functional site in seconds 💡. Enjoy a smooth back-and-forth to fine-tune every detail 🤖, ensuring your site is exactly how you want it. Say goodbye to clunky drag-and-drop builders, overpriced web designers, and endless frustration. With Langit, just tell AI what you want, and boom—your website is live.
+    The smartest AI website builder—turn your ideas into stunning, live websites in seconds. 🚀 Langit lets you generate sleek, responsive sites just by describing them. No templates, no coding—just pure creative freedom. With real-time AI adjustments, you can refine every detail effortlessly. Need a bold headline? A sleek call-to-action? Just say it, and Langit makes it happen. ✨ The future of web design is here—faster, easier, and 100% you.
   </p>
 </section>
 {/* Email Capture Section */}
