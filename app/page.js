@@ -13,10 +13,10 @@ export default function Home() {
       {/* Header */}
       <header className="absolute top-0 left-0 w-full p-4 sm:p-6">
         <div className="max-w-screen-lg mx-auto flex items-center justify-between relative">
-          {/* Logo */}
-          <div className="text-2xl font-bold text-primary whitespace-nowrap">
-            Langit.ai
-          </div>
+         {/* Logo */}
+<div className="whitespace-nowrap">
+  <img src="/langitai-high-resolution-logo-transparent.png" alt="Langit.ai Logo" className="h-10 w-auto" />
+</div>
 
           {/* Desktop Buttons: visible on screens ≥640px */}
           <div className="hidden sm:flex space-x-4">
