@@ -15,7 +15,7 @@ export default function Home() {
         <div className="max-w-screen-lg mx-auto flex items-center justify-between relative">
          {/* Logo */}
 <div className="whitespace-nowrap">
-  <img src="/langitai-high-resolution-logo-transparent.png" alt="Langit.ai Logo" className="h-10 w-auto" />
+  <img src="/langitai-high-resolution-logo-transparent.png" alt="Langit.ai Logo" className="h-8 w-auto" />
 </div>
 
           {/* Desktop Buttons: visible on screens ≥640px */}
