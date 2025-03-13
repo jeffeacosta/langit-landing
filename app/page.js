@@ -128,7 +128,7 @@ export default function Home() {
         <p className="mt-4 text-lg text-textLight">Take a peek at how Langit can generate a website.</p>
         <div className="flex justify-center mt-6">
           <img 
-            src="/langit-screenshot2.png" 
+            src="/finaldemopic.png" 
             alt="Langit Demo Screenshot" 
             className="max-w-full rounded-lg shadow-md" 
             style={{ maxHeight: '500px' }} 
