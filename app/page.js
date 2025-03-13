@@ -138,10 +138,10 @@ export default function Home() {
 {/* Why Langit? Section */}
 <section className="mt-20 max-w-4xl mx-auto text-center">
   <h2 className="text-3xl md:text-4xl font-bold text-primary">
-    Why Langit?
+    The Easiest Way to Build a Website. Just Type, and It’s Done.
   </h2>
   <p className="mt-4 text-lg text-textLight">
-    The smartest AI website builder—turn your ideas into stunning, live websites in seconds. 🚀 Langit lets you generate sleek, responsive sites just by describing them. No templates, no coding—just pure creative freedom. With real-time AI adjustments, you can refine every detail effortlessly. Need a bold headline? A sleek call-to-action? Just say it, and Langit makes it happen. ✨ The future of web design is here—faster, easier, and 100% you.
+    Building a website shouldn’t feel like assembling IKEA furniture. 🛠️ Langit skips the complicated menus and clunky drag-and-drop editors—just type what you need, and it’s done. 🚀 No coding, no tweaking, no wasted time. Langit instantly generates clean, professional websites that are fast, responsive, and beautifully designed. Want a bold landing page? A sleek car dealership site? Just say the word. Make edits in seconds—no sliders, no grids, no hassle. Need a bigger headline or a new color? Just type it, and Langit updates it instantly. Simple. Fast. Effortless. 🎨🔥
   </p>
 </section>
 {/* Email Capture Section */}
