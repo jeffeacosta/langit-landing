@@ -141,7 +141,7 @@ export default function Home() {
     The Easiest Way to Build a Website. Just Type, and It’s Done.
   </h2>
   <p className="mt-4 text-lg text-textLight">
-    Building a website shouldn’t feel like assembling IKEA furniture. 🛠️ Langit skips the complicated menus and clunky drag-and-drop editors—just type what you need, and it’s done. 🚀 No coding, no tweaking, no wasted time. Langit instantly generates clean, professional websites that are fast, responsive, and beautifully designed. Want a bold landing page? A sleek car dealership site? Just say the word. Make edits in seconds—no sliders, no grids, no hassle. Need a bigger headline or a new color? Just type it, and Langit updates it instantly. Simple. Fast. Effortless. 🎨🔥
+    Building a website shouldn’t feel like assembling IKEA furniture. 🛠️ Langit skips the complicated menus and clunky drag-and-drop editors—just type what you need, and it’s done. 🚀 Want a bold landing page? A sleek car dealership site? Just say the word. Need to make changes? Make edits in seconds—no sliders, no grids, no hassle. Need a bigger headline or a new color? Just type it, and Langit updates it instantly. Simple. Fast. Effortless. 🎨🔥
   </p>
 </section>
 {/* Email Capture Section */}
