@@ -20,7 +20,7 @@ export default function Home() {
 
           {/* Desktop Buttons: visible on screens ≥640px */}
           <div className="hidden sm:flex space-x-4">
-            <button className="bg-primary text-black px-4 py-2 rounded-lg font-bold hover:bg-blue-300 transition-all duration-300">
+            <button className="bg-primary text-black px-4 py-2 rounded-lg font-bold hover:bg-blue-500 transition-all duration-300">
               Create Free Website
             </button>
             <button className="border border-primary text-primary px-4 py-2 rounded-lg font-bold hover:bg-primary hover:text-black transition-all duration-300">
@@ -72,13 +72,13 @@ export default function Home() {
               <div className="absolute right-0 top-full mt-2 w-48 bg-cardDark rounded-md shadow-lg py-2 z-20">
                 <button
                   onClick={() => setMenuOpen(false)}
-                  className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-blue-300 transition-all duration-300"
+                  className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-blue-500 transition-all duration-300"
                 >
                   Create Free Website
                 </button>
                 <button
                   onClick={() => setMenuOpen(false)}
-                  className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-blue-300 transition-all duration-300"
+                  className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-blue-500 transition-all duration-300"
                 >
                   Sign In
                 </button>
@@ -95,7 +95,7 @@ export default function Home() {
         Describe it. Watch it come to life. No tech skills needed.
       </p>
       <button className="mt-6 bg-primary text-black px-8 py-4 rounded-xl text-lg font-bold 
-        hover:bg-blue-300 hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 ease-in-out">
+        hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 ease-in-out">
         Try for Free
       </button>
     </div>
@@ -158,7 +158,7 @@ export default function Home() {
       placeholder="Enter your email" 
       className="p-3 rounded-l-lg outline-none text-black" 
     />
-    <button className="bg-primary text-black px-6 py-3 rounded-r-lg font-bold hover:bg-blue-300 transition-all duration-300">
+    <button className="bg-primary text-black px-6 py-3 rounded-r-lg font-bold hover:bg-blue-500 transition-all duration-300">
       Get Notified
     </button>
   </div>
