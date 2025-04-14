@@ -1069,7 +1069,7 @@ export default function LangitLanding() {
         </section>
 
         {/* How It Works Section */}
-        <section className="section" id="how-it-works" style={{ backgroundColor: "rgba(18, 18, 36, 0.3)" }}>
+        <section className="section" id="how-it-works" style={{ backgroundColor: "rgba(4, 20, 40, 0.3)}}>
           <div className="container">
             <div className="section-header">
               <h2 className="section-title">The <span className="hero-highlight">Intelligence</span> Behind the Interface</h2>
