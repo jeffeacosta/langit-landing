@@ -1182,7 +1182,7 @@ export default function LangitLanding() {
         </section>
 
         {/* Pricing Section */}
-        <section className="section" id="pricing" style={{ backgroundColor: "rgba(18, 18, 36, 0.3)" }}>
+        <section className="section" id="pricing" style={{ backgroundColor: "rgba(4, 20, 40, 0.3)" }}>
           <div className="container">
             <div className="section-header">
               <h2 className="section-title">Simple, <span className="hero-highlight">Transparent</span> Pricing</h2>
