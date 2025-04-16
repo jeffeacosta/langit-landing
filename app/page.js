@@ -41,8 +41,7 @@ export default function Home() {
 
   return (
     <div className="relative bg-[#08080d] text-white min-h-screen flex flex-col items-center">
-      {/* Background effects */}
-      <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-30 z-0"></div>
+      {/* Background effects - removed grid pattern */}
       <div className="absolute top-[-20vh] right-[-10vw] w-[70vw] h-[70vh] rounded-full bg-glow-primary filter blur-[60px] opacity-60 z-0 animate-pulse"></div>
       <div className="absolute bottom-[-20vh] left-[-10vw] w-[70vw] h-[70vh] rounded-full bg-glow-secondary filter blur-[60px] opacity-60 z-0 animate-pulse"></div>
 
@@ -417,7 +416,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full py-12 border-t border-white/10">
+      <footer className="w-full py-12 border-t border-white/10 mt-auto">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div className="md:col-span-1">
@@ -536,6 +535,24 @@ export default function Home() {
 
         .animate-pulse {
           animation: pulse 8s infinite;
+        }
+
+        /* Hide gridlines on all elements with transforms */
+        svg, .step-number, .feature-icon, .author-avatar, .social-icon, .badge, .dot, .cursor {
+          transform: translateZ(0);
+          will-change: transform;
+          isolation: isolate;
+          backface-visibility: hidden;
+        }
+
+        /* Add additional styles to prevent overflow */
+        #__next, body, html {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          overflow-x: hidden;
+          position: relative;
         }
 
         .feature-card {
