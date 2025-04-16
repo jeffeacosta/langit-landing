@@ -1,441 +1,223 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { ChevronRight, Code, Edit, LineChart, MessageSquare, Zap } from "lucide-react";
+import { useState, useEffect } from 'react';
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [typedText, setTypedText] = useState("");
-  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
-  const [currentCharIndex, setCurrentCharIndex] = useState(0);
-  const [showCursor, setShowCursor] = useState(true);
 
-  const commandPhrases = [
-    "Change the headline color to purple",
-    "Add a testimonial section below",
-    "Make the hero image larger",
-    "Improve my conversion rate",
-    "Create a pricing table"
-  ];
-
+  // Setup event listeners after mount
   useEffect(() => {
-    // Cursor blinking effect
-    const cursorInterval = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 500);
-
-    // Typing effect
-    const typingInterval = setInterval(() => {
-      if (currentCharIndex < commandPhrases[currentPhraseIndex].length) {
-        setTypedText(commandPhrases[currentPhraseIndex].substring(0, currentCharIndex + 1));
-        setCurrentCharIndex(prev => prev + 1);
-      } else {
-        // Pause at the end of typing a complete phrase
-        setTimeout(() => {
-          setTypedText("");
-          setCurrentCharIndex(0);
-          setCurrentPhraseIndex((prev) => (prev + 1) % commandPhrases.length);
-        }, 2000);
-      }
-    }, 75);
-
-    return () => {
-      clearInterval(cursorInterval);
-      clearInterval(typingInterval);
-    };
-  }, [currentCharIndex, currentPhraseIndex]);
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+        
+        // Close mobile menu if open
+        setMenuOpen(false);
+      });
+    });
+  }, []);
 
   return (
-    <div className="relative bg-black text-white min-h-screen overflow-hidden">
-      {/* Background grid effect */}
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-5"></div>
-      
-      {/* Accent color gradients */}
-      <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-purple-700 rounded-full filter blur-3xl opacity-10 -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-blue-700 rounded-full filter blur-3xl opacity-10 translate-x-1/2 translate-y-1/2"></div>
-      
+    <div className="relative bg-[#08080d] text-white min-h-screen flex flex-col items-center">
+      {/* Background effects */}
+      <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-30 z-0"></div>
+      <div className="absolute top-[-20vh] right-[-10vw] w-[70vw] h-[70vh] rounded-full bg-glow-primary filter blur-[60px] opacity-60 z-0 animate-pulse"></div>
+      <div className="absolute bottom-[-20vh] left-[-10vw] w-[70vw] h-[70vh] rounded-full bg-glow-secondary filter blur-[60px] opacity-60 z-0 animate-pulse"></div>
+
       {/* Header */}
-      <header className="relative z-10 w-full p-4 sm:p-6 border-b border-gray-800">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg p-1">
-              <span className="text-xl font-bold">L</span>
-            </div>
-            <span className="text-xl font-bold tracking-tight">Langit<span className="text-purple-500">.</span>ai</span>
-          </div>
+      <header className="fixed top-0 left-0 w-full py-6 z-50 backdrop-blur-md bg-[#08080d]/80 border-b border-white/10">
+        <div className="container mx-auto px-6 flex justify-between items-center">
+          <a href="#" className="flex items-center gap-2 text-2xl font-bold">
+            <div className="text-3xl text-primary">⟡</div>
+            <span className="bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">Langit.ai</span>
+          </a>
 
-          {/* Desktop Nav: visible on screens ≥768px */}
-          <div className="hidden md:flex items-center space-x-6">
-            <a href="#features" className="text-gray-300 hover:text-white transition duration-200">Features</a>
-            <a href="#how-it-works" className="text-gray-300 hover:text-white transition duration-200">How It Works</a>
-            <a href="#pricing" className="text-gray-300 hover:text-white transition duration-200">Pricing</a>
-            <button className="border border-gray-700 px-4 py-2 rounded-lg hover:bg-gray-800 transition duration-200">
-              Log In
-            </button>
-            <button className="bg-gradient-to-r from-purple-600 to-blue-600 px-4 py-2 rounded-lg hover:opacity-90 transition duration-200">
-              Get Started
-            </button>
-          </div>
-
-          {/* Mobile Menu Button: visible on screens <768px */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="text-gray-400 hover:text-white"
-            >
+          <button 
+            className="lg:hidden text-white focus:outline-none"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               {menuOpen ? (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               )}
-            </button>
-          </div>
+            </svg>
+          </button>
+          
+          <nav className={`lg:flex items-center gap-5 ${menuOpen ? 'absolute top-full left-0 w-full bg-[#121224] p-6 flex flex-col items-start gap-4 border-b border-white/10' : 'hidden'} lg:static lg:bg-transparent lg:p-0 lg:flex-row lg:border-none`}>
+            <a href="#features" className="text-gray-300 hover:text-white transition-colors">Features</a>
+            <a href="#how-it-works" className="text-gray-300 hover:text-white transition-colors">How It Works</a>
+            <a href="#pricing" className="text-gray-300 hover:text-white transition-colors">Pricing</a>
+            <button className="px-5 py-2.5 rounded-lg border border-primary text-primary hover:bg-primary/10 transition-colors font-semibold">Log In</button>
+            <button className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg shadow-primary/30 hover:translate-y-[-2px] transition-all font-semibold">Sign Up Free</button>
+          </nav>
         </div>
-
-        {/* Mobile Menu: Dropdown */}
-        {menuOpen && (
-          <div className="md:hidden absolute left-0 right-0 bg-gray-900 border-b border-gray-800 mt-4 z-50">
-            <div className="p-4 space-y-3">
-              <a href="#features" className="block text-gray-300 hover:text-white">Features</a>
-              <a href="#how-it-works" className="block text-gray-300 hover:text-white">How It Works</a>
-              <a href="#pricing" className="block text-gray-300 hover:text-white">Pricing</a>
-              <button className="block w-full text-left text-gray-300 hover:text-white py-2">
-                Log In
-              </button>
-              <button className="block w-full bg-gradient-to-r from-purple-600 to-blue-600 px-4 py-2 rounded-lg">
-                Get Started
-              </button>
-            </div>
-          </div>
-        )}
       </header>
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-12 pb-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <span className="inline-block px-3 py-1 bg-gray-800 text-purple-400 rounded-full text-sm font-medium">
-                The Future Of Landing Pages
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
-                Chat Your Way To Higher Conversions
-              </h1>
-              <p className="text-xl text-gray-300">
-                No code. No drag-and-drop. Just tell Langit what you want, and watch your perfect landing page come to life in real-time.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-3 rounded-lg text-lg font-medium hover:shadow-lg hover:shadow-purple-500/20 transition duration-300">
-                  Start Building For Free
-                </button>
-                <button className="border border-gray-700 px-6 py-3 rounded-lg text-lg font-medium hover:bg-gray-800 transition duration-300">
-                  See Demo
-                </button>
-              </div>
-              <div className="flex items-center text-sm text-gray-400">
-                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                No credit card required
-              </div>
-            </div>
-
-            {/* Interactive Demo */}
-            <div className="relative bg-gray-900 rounded-2xl border border-gray-800 shadow-2xl shadow-purple-500/5 overflow-hidden">
-              {/* Terminal Header */}
-              <div className="bg-gray-800 p-4 flex items-center">
-                <div className="flex space-x-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                </div>
-                <div className="mx-auto text-gray-400 text-sm">Langit AI Interface</div>
-              </div>
-              
-              {/* Terminal Body */}
-              <div className="p-6 bg-black h-72 flex flex-col justify-between">
-                <div className="space-y-4">
-                  {/* User command */}
-                  <div className="flex">
-                    <span className="text-green-500 mr-2">❯</span>
-                    <span className="text-white">{typedText}</span>
-                    <span className={`w-2 h-5 bg-purple-500 ml-1 ${showCursor ? 'opacity-100' : 'opacity-0'}`}></span>
-                  </div>
-                  
-                  {/* AI Response */}
-                  <div className="pl-4 border-l-2 border-purple-600">
-                    <div className="text-purple-400">Langit AI:</div>
-                    <div className="text-gray-300">Making requested changes now... Done! Your page has been updated.</div>
-                  </div>
-                </div>
-                
-                {/* Stats Panel */}
-                <div className="bg-gray-900 rounded-lg p-4 mt-4">
-                  <div className="text-sm text-gray-400 mb-2">Real-time Analytics</div>
-                  <div className="grid grid-cols-3 gap-4">
-                    <div>
-                      <div className="text-green-400 text-xl font-bold">+42%</div>
-                      <div className="text-xs text-gray-500">Conversion Rate</div>
-                    </div>
-                    <div>
-                      <div className="text-blue-400 text-xl font-bold">2.4m</div>
-                      <div className="text-xs text-gray-500">Avg Time</div>
-                    </div>
-                    <div>
-                      <div className="text-purple-400 text-xl font-bold">89%</div>
-                      <div className="text-xs text-gray-500">Engagement</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <section className="container mx-auto px-6 pt-40 pb-20 relative z-10">
+        <div className="max-w-2xl">
+          <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
+            Chat Your Way to Landing Page <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Perfection</span>
+          </h1>
+          <p className="text-xl text-gray-300 mt-6">
+            Langit is the first AI platform that lets you build & optimize high-converting landing pages through simple conversations. No code. No design skills. Just tell it what you want.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 mt-8">
+            <button className="px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg shadow-primary/30 hover:translate-y-[-2px] transition-all font-semibold text-lg">Start For Free</button>
+            <button className="px-8 py-4 rounded-xl border-2 border-primary text-primary hover:bg-primary/10 transition-colors font-semibold text-lg">See Demo</button>
           </div>
         </div>
-      </section>
 
-      {/* Social Proof */}
-      <section className="relative z-10 bg-gray-900 py-12 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-gray-400 mb-8">Trusted by forward-thinking companies</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center justify-center opacity-70">
-            <div className="flex justify-center">
-              <svg className="h-8" viewBox="0 0 124 24" fill="currentColor">
-                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22c-5.5 0-10-4.5-10-10S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/>
-              </svg>
+        {/* Terminal Demo */}
+        <div className="terminal mt-16 max-w-xl w-full mx-auto lg:absolute lg:right-6 lg:top-40 lg:mt-0">
+          <div className="terminal-header">
+            <div className="terminal-dots">
+              <div className="dot dot-red"></div>
+              <div className="dot dot-yellow"></div>
+              <div className="dot dot-green"></div>
             </div>
-            <div className="flex justify-center">
-              <svg className="h-8" viewBox="0 0 124 24" fill="currentColor">
-                <path d="M24 12l-8-8v5H4v6h12v5l8-8z"/>
-              </svg>
-            </div>
-            <div className="flex justify-center">
-              <svg className="h-8" viewBox="0 0 124 24" fill="currentColor">
-                <path d="M12 12l-8-8v16l8-8zm8 0l-8-8v16l8-8z"/>
-              </svg>
-            </div>
-            <div className="flex justify-center">
-              <svg className="h-8" viewBox="0 0 124 24" fill="currentColor">
-                <path d="M3 3h18v18H3V3zm16 16V5H5v14h14z"/>
-              </svg>
-            </div>
-            <div className="hidden lg:flex justify-center">
-              <svg className="h-8" viewBox="0 0 124 24" fill="currentColor">
-                <path d="M0 12a12 12 0 1 1 24 0 12 12 0 0 1-24 0z"/>
-              </svg>
+          </div>
+          <div className="terminal-body">
+            <div>
+              <span className="typed-text">You:</span> Change the hero button to red<br />
+              <span className="response-text">Langit:</span> Updated button color to red. Anything else?<br /><br />
+              <span className="typed-text">You:</span> Add a testimonial section below features<br />
+              <span className="response-text">Langit:</span> Added testimonial section with 3 cards. Need specific quotes?<br /><br />
+              <span className="typed-text">You:</span> Why isn't this converting well?<br />
+              <span className="response-text">Langit:</span> Based on heatmap data, visitors aren't scrolling past the hero. I recommend making your value prop clearer and moving your sign-up form above the fold.<span className="cursor"></span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="relative z-10 py-24 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section id="features" className="w-full py-24 bg-[#0c0c14]">
+        <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500 mb-4">
-              Conversation Is The New Interface
+            <h2 className="text-4xl font-bold mb-4">
+              Finally, Landing Pages Built on <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Your Terms</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Build, optimize, and scale your landing pages through simple conversation. No more complex menus or frustrating drag-and-drop.
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              No more wrestling with clunky editors or complex templates. Just tell Langit what you want—in plain language.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 hover:shadow-lg hover:shadow-purple-500/5 transition duration-300">
-              <div className="w-12 h-12 bg-purple-900/30 rounded-lg flex items-center justify-center mb-6">
-                <MessageSquare className="w-6 h-6 text-purple-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">AI-Powered Editing</h3>
-              <p className="text-gray-400">
-                Simply tell Langit what you want to change, and watch it happen in real-time. No complex interfaces to learn.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="feature-card">
+              <div className="feature-icon">💬</div>
+              <h3 className="feature-title">Conversational Editing</h3>
+              <p className="feature-text">Simply type what you want changed and watch it happen instantly. No more hunting through menus or complex settings.</p>
             </div>
 
-            {/* Feature 2 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 hover:shadow-lg hover:shadow-purple-500/5 transition duration-300">
-              <div className="w-12 h-12 bg-blue-900/30 rounded-lg flex items-center justify-center mb-6">
-                <Zap className="w-6 h-6 text-blue-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Instant Responsiveness</h3>
-              <p className="text-gray-400">
-                Every page is fully responsive out of the box. Your site will look perfect on any device, without any extra work.
-              </p>
+            <div className="feature-card">
+              <div className="feature-icon">📱</div>
+              <h3 className="feature-title">Fully Responsive</h3>
+              <p className="feature-text">Every page automatically works perfectly on all devices. Just ask Langit to optimize for mobile or desktop and it handles the rest.</p>
             </div>
 
-            {/* Feature 3 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 hover:shadow-lg hover:shadow-purple-500/5 transition duration-300">
-              <div className="w-12 h-12 bg-green-900/30 rounded-lg flex items-center justify-center mb-6">
-                <LineChart className="w-6 h-6 text-green-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Built-in CRO Tools</h3>
-              <p className="text-gray-400">
-                Heatmaps, session recordings, and A/B testing all built right in. Optimize your conversions with data.
-              </p>
+            <div className="feature-card">
+              <div className="feature-icon">📊</div>
+              <h3 className="feature-title">Built-in CRO Tools</h3>
+              <p className="feature-text">Analytics, heatmaps, session recordings, and A/B testing—all included and accessible through natural conversation.</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+            <div className="feature-card">
+              <div className="feature-icon">🚀</div>
+              <h3 className="feature-title">SEO Optimized</h3>
+              <p className="feature-text">Ask Langit to optimize your page for specific keywords, and it'll automatically implement best practices to boost your rankings.</p>
             </div>
 
-            {/* Feature 4 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 hover:shadow-lg hover:shadow-purple-500/5 transition duration-300">
-              <div className="w-12 h-12 bg-indigo-900/30 rounded-lg flex items-center justify-center mb-6">
-                <Edit className="w-6 h-6 text-indigo-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Modular Editing</h3>
-              <p className="text-gray-400">
-                Make changes to specific elements without regenerating the entire page. Precision editing at your fingertips.
-              </p>
+            <div className="feature-card">
+              <div className="feature-icon">⚡</div>
+              <h3 className="feature-title">Lightning Fast</h3>
+              <p className="feature-text">Every page loads in under 1 second. Ask for performance improvements, and Langit instantly optimizes your page speed.</p>
             </div>
 
-            {/* Feature 5 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 hover:shadow-lg hover:shadow-purple-500/5 transition duration-300">
-              <div className="w-12 h-12 bg-red-900/30 rounded-lg flex items-center justify-center mb-6">
-                <Code className="w-6 h-6 text-red-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">SEO Optimized</h3>
-              <p className="text-gray-400">
-                Every page is built with best SEO practices in mind. Rank higher and get more organic traffic automatically.
-              </p>
-            </div>
-
-            {/* Feature 6 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 hover:shadow-lg hover:shadow-purple-500/5 transition duration-300">
-              <div className="w-12 h-12 bg-yellow-900/30 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-3">Conversion Analysis</h3>
-              <p className="text-gray-400">
-                Ask "Why isn't this converting?" and get AI-powered insights and suggestions based on your actual data.
-              </p>
+            <div className="feature-card">
+              <div className="feature-icon">🧩</div>
+              <h3 className="feature-title">AI-Powered Modules</h3>
+              <p className="feature-text">Request specific sections like testimonials, pricing tables, or contact forms, and Langit will build them on the fly.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="relative z-10 py-24 px-6 bg-gradient-to-b from-black to-gray-900">
-        <div className="max-w-7xl mx-auto">
+      <section id="how-it-works" className="w-full py-24">
+        <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500 mb-4">
-              How Langit Works
+            <h2 className="text-4xl font-bold mb-4">
+              The <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Intelligence</span> Behind the Interface
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Building a high-converting landing page has never been easier. Just chat with Langit and watch your vision come to life.
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Langit doesn't just generate pages—it thinks critically about conversion optimization.
             </p>
           </div>
 
-          <div className="relative">
-            {/* Connecting line */}
-            <div className="absolute top-0 bottom-0 left-1/2 w-1 bg-gradient-to-b from-purple-500 to-blue-500 transform -translate-x-1/2 hidden md:block"></div>
-            
-            {/* Steps */}
-            <div className="space-y-24">
-              {/* Step 1 */}
-              <div className="relative grid md:grid-cols-2 gap-8 items-center">
-                <div className="md:text-right">
-                  <div className="inline-block px-3 py-1 bg-purple-900/30 text-purple-400 rounded-full text-sm font-medium mb-4">
-                    Step 1
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4">Describe Your Vision</h3>
-                  <p className="text-gray-400">
-                    Tell Langit what kind of landing page you need. Whether it's for a product launch, event registration, or lead generation, just describe it in natural language.
-                  </p>
-                </div>
-                <div className="relative">
-                  {/* Dot */}
-                  <div className="absolute top-0 left-1/2 w-6 h-6 bg-purple-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 hidden md:block"></div>
-                  
-                  <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-lg">
-                    <div className="flex mb-4">
-                      <span className="text-green-500 mr-2">❯</span>
-                      <span className="text-white">I need a landing page for my new fitness app with sign-up form</span>
-                    </div>
-                    <div className="pl-4 border-l-2 border-purple-600">
-                      <div className="text-purple-400">Langit AI:</div>
-                      <div className="text-gray-300">Creating a fitness app landing page with hero section, feature highlights, and sign-up form...</div>
-                    </div>
-                  </div>
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            <div className="w-full lg:w-1/2 space-y-12">
+              <div className="step">
+                <div className="step-number">1</div>
+                <div className="step-content">
+                  <h3 className="step-title">Start with a conversation</h3>
+                  <p className="step-text">Describe your landing page needs in simple language. Langit asks smart follow-up questions to understand your goals completely.</p>
                 </div>
               </div>
-              
-              {/* Step 2 */}
-              <div className="relative grid md:grid-cols-2 gap-8 items-center">
-                <div className="md:order-2">
-                  <div className="inline-block px-3 py-1 bg-blue-900/30 text-blue-400 rounded-full text-sm font-medium mb-4">
-                    Step 2
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4">Refine With Conversation</h3>
-                  <p className="text-gray-400">
-                    Want to change something? Just ask. Langit understands natural language instructions to adjust colors, layout, content, and more—all in real-time.
-                  </p>
-                </div>
-                <div className="relative md:order-1">
-                  {/* Dot */}
-                  <div className="absolute top-0 left-1/2 w-6 h-6 bg-blue-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 hidden md:block"></div>
-                  
-                  <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-lg">
-                    <div className="flex mb-4">
-                      <span className="text-green-500 mr-2">❯</span>
-                      <span className="text-white">Make the headline bigger and add a testimonial section</span>
-                    </div>
-                    <div className="pl-4 border-l-2 border-purple-600">
-                      <div className="text-purple-400">Langit AI:</div>
-                      <div className="text-gray-300">Enlarging headline and adding a testimonial section with 3 customer quotes. Would you like to add specific testimonials?</div>
-                    </div>
-                  </div>
+
+              <div className="step">
+                <div className="step-number">2</div>
+                <div className="step-content">
+                  <h3 className="step-title">Watch your page come alive</h3>
+                  <p className="step-text">Langit builds your page in real-time based on your instructions. See changes instantly as you request them.</p>
                 </div>
               </div>
-              
-              {/* Step 3 */}
-              <div className="relative grid md:grid-cols-2 gap-8 items-center">
-                <div className="md:text-right">
-                  <div className="inline-block px-3 py-1 bg-green-900/30 text-green-400 rounded-full text-sm font-medium mb-4">
-                    Step 3
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4">Optimize With Data</h3>
-                  <p className="text-gray-400">
-                    Ask Langit about your page's performance. The AI analyzes user behavior and suggests improvements to boost conversions, all through simple conversation.
-                  </p>
+
+              <div className="step">
+                <div className="step-number">3</div>
+                <div className="step-content">
+                  <h3 className="step-title">Refine with natural commands</h3>
+                  <p className="step-text">"Move this section up." "Make the headline more compelling." "Add social proof." Langit handles it all without you touching code.</p>
                 </div>
-                <div className="relative">
-                  {/* Dot */}
-                  <div className="absolute top-0 left-1/2 w-6 h-6 bg-green-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 hidden md:block"></div>
-                  
-                  <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-lg">
-                    <div className="flex mb-4">
-                      <span className="text-green-500 mr-2">❯</span>
-                      <span className="text-white">Why aren't people clicking my sign-up button?</span>
-                    </div>
-                    <div className="pl-4 border-l-2 border-purple-600">
-                      <div className="text-purple-400">Langit AI:</div>
-                      <div className="text-gray-300">Analysis shows users aren't scrolling down to see the button. Let's move it higher and make it more prominent. I'll also adjust the color for better contrast.</div>
-                    </div>
+              </div>
+
+              <div className="step">
+                <div className="step-number">4</div>
+                <div className="step-content">
+                  <h3 className="step-title">Optimize with AI insights</h3>
+                  <p className="step-text">Ask "Why aren't people converting?" and get data-backed suggestions that Langit can implement immediately.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full lg:w-1/2">
+              <div className="terminal w-full">
+                <div className="terminal-header">
+                  <div className="terminal-dots">
+                    <div className="dot dot-red"></div>
+                    <div className="dot dot-yellow"></div>
+                    <div className="dot dot-green"></div>
+                  </div>
+                </div>
+                <div className="terminal-body">
+                  <div>
+                    <span className="typed-text">You:</span> Make the headline more punchy<br />
+                    <span className="response-text">Langit:</span> Updated headline to "Skyrocket Your Conversions Without Touching Code"<br /><br />
+                    <span className="typed-text">You:</span> Show me the heatmap for mobile users<br />
+                    <span className="response-text">Langit:</span> [Displaying heatmap] I notice mobile users aren't seeing your pricing table. Should I move it higher?<br /><br />
+                    <span className="typed-text">You:</span> Yes, and add a testimonial from Sarah J.<br />
+                    <span className="response-text">Langit:</span> Moved pricing section up and added Sarah's testimonial from your database. Your page should convert 23% better now based on my analysis.<span className="cursor"></span>
                   </div>
                 </div>
               </div>
@@ -444,115 +226,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="relative z-10 py-24 px-6">
-        <div className="max-w-7xl mx-auto">
+      {/* Testimonials Section */}
+      <section className="w-full py-24 bg-[#0c0c14]">
+        <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500 mb-4">
-              What Our Users Are Saying
+            <h2 className="text-4xl font-bold mb-4">
+              What Our <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Users Say</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Join thousands of marketers and founders who have revolutionized how they build landing pages.
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Marketers and founders are transforming their landing page workflows with Langit.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Testimonial 1 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 hover:shadow-lg hover:shadow-purple-500/5 transition duration-300">
-              <div className="flex items-center mb-6">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center font-bold text-white">
-                  S
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="testimonial">
+              <p className="testimonial-text">"I used to spend days tweaking landing pages in Webflow. With Langit, I describe what I want and it's done in minutes. Our conversion rate is up 37% since switching."</p>
+              <div className="testimonial-author">
+                <div className="author-avatar">M</div>
+                <div className="author-info">
+                  <h4>Mia Rodriguez</h4>
+                  <p>Growth Lead, Fintech Startup</p>
                 </div>
-                <div className="ml-4">
-                  <h4 className="font-bold">Sarah T.</h4>
-                  <p className="text-sm text-gray-400">Startup Founder</p>
-                </div>
-              </div>
-              <p className="text-gray-300">
-                "I used to spend days tweaking landing pages. With Langit, I built a high-converting page in under 20 minutes by just chatting with the AI. Our conversion rate jumped 63%."
-              </p>
-              <div className="flex text-yellow-400 mt-4">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
               </div>
             </div>
 
-            {/* Testimonial 2 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 hover:shadow-lg hover:shadow-purple-500/5 transition duration-300">
-              <div className="flex items-center mb-6">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-green-500 flex items-center justify-center font-bold text-white">
-                  M
+            <div className="testimonial">
+              <p className="testimonial-text">"As a non-technical founder, I was always the bottleneck in our landing page testing. Langit lets me test new ideas in seconds without bothering our developers."</p>
+              <div className="testimonial-author">
+                <div className="author-avatar">J</div>
+                <div className="author-info">
+                  <h4>James Chen</h4>
+                  <p>Founder, SaaS Platform</p>
                 </div>
-                <div className="ml-4">
-                  <h4 className="font-bold">Marcus J.</h4>
-                  <p className="text-sm text-gray-400">Marketing Director</p>
-                </div>
-              </div>
-              <p className="text-gray-300">
-                "The built-in CRO tools are game-changing. I asked Langit why our sign-ups were low, and it analyzed the data and suggested specific changes. Our conversion rate doubled overnight."
-              </p>
-              <div className="flex text-yellow-400 mt-4">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
               </div>
             </div>
 
-            {/* Testimonial 3 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 hover:shadow-lg hover:shadow-purple-500/5 transition duration-300">
-              <div className="flex items-center mb-6">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-red-500 to-yellow-500 flex items-center justify-center font-bold text-white">
-                  L
+            <div className="testimonial">
+              <p className="testimonial-text">"I asked Langit why our page wasn't converting, and it suggested moving our testimonials above the fold. That one change doubled our sign-up rate overnight."</p>
+              <div className="testimonial-author">
+                <div className="author-avatar">S</div>
+                <div className="author-info">
+                  <h4>Sophia Patel</h4>
+                  <p>CMO, E-commerce Brand</p>
                 </div>
-                <div className="ml-4">
-                  <h4 className="font-bold">Lisa R.</h4>
-                  <p className="text-sm text-gray-400">E-commerce Entrepreneur</p>
-                </div>
-              </div>
-              <p className="text-gray-300">
-                "No more fighting with page builders or hiring expensive designers. I just tell Langit what I need, and the AI does the rest. My product pages now convert at 12% — that's 3x our previous rate!"
-              </p>
-              <div className="flex text-yellow-400 mt-4">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
               </div>
             </div>
           </div>
@@ -560,280 +276,681 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="relative z-10 py-24 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section id="pricing" className="w-full py-24">
+        <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500 mb-4">
-              Simple, Transparent Pricing
+            <h2 className="text-4xl font-bold mb-4">
+              Simple, <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Transparent</span> Pricing
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Choose the plan that fits your needs. All plans include the AI-powered conversational interface.
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              No complicated tiers. Choose the plan that works for your business.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Free Plan */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 hover:shadow-lg hover:shadow-purple-500/5 transition duration-300">
-              <div className="text-gray-400 uppercase text-sm font-bold tracking-wider mb-4">Free</div>
-              <h3 className="text-3xl font-bold mb-4">$0<span className="text-lg text-gray-400 font-normal">/month</span></h3>
-              <p className="text-gray-400 mb-6">Perfect for getting started and testing the waters.</p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  1 landing page
-                </li>
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Basic analytics
-                </li>
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Custom domain
-                </li>
-                <li className="flex items-center text-gray-500">
-                  <svg className="w-5 h-5 text-gray-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                  Advanced CRO tools
-                </li>
-                <li className="flex items-center text-gray-500">
-                  <svg className="w-5 h-5 text-gray-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                  A/B testing
-                </li>
-              </ul>
-              <button className="w-full border border-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition duration-200">
-                Get Started
-              </button>
-            </div>
-
-            {/* Pro Plan */}
-            <div className="bg-gradient-to-b from-gray-900 to-gray-800 border border-purple-500 rounded-xl p-8 shadow-lg shadow-purple-500/10 transform md:scale-105 relative">
-              <div className="absolute top-0 right-0 bg-gradient-to-r from-purple-500 to-blue-500 text-black px-4 py-1 rounded-bl-lg rounded-tr-lg text-sm font-bold">
-                Most Popular
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="pricing-card">
+              <div className="pricing-header">
+                <h3 className="pricing-name">Starter</h3>
+                <p className="pricing-description">Perfect for small businesses and solopreneurs</p>
               </div>
-              <div className="text-purple-400 uppercase text-sm font-bold tracking-wider mb-4">Pro</div>
-              <h3 className="text-3xl font-bold mb-4">$29<span className="text-lg text-gray-400 font-normal">/month</span></h3>
-              <p className="text-gray-400 mb-6">Everything you need for professional landing pages.</p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  5 landing pages
+              <div className="pricing-price">
+                <span className="pricing-currency">$</span>29<span className="pricing-period">/mo</span>
+              </div>
+              <ul className="pricing-features">
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> 1 landing page
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Advanced analytics
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> 10,000 monthly visitors
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Custom domain
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> Basic analytics
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  All CRO tools
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> Conversational editing
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Basic A/B testing
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> Custom domain
                 </li>
               </ul>
-              <button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-3 rounded-lg font-medium hover:shadow-lg hover:shadow-purple-500/20 transition duration-200">
-                Get Started
-              </button>
+              <button className="pricing-button btn-outline">Get Started</button>
             </div>
 
-            {/* Enterprise Plan */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 hover:shadow-lg hover:shadow-purple-500/5 transition duration-300">
-              <div className="text-gray-400 uppercase text-sm font-bold tracking-wider mb-4">Enterprise</div>
-              <h3 className="text-3xl font-bold mb-4">$99<span className="text-lg text-gray-400 font-normal">/month</span></h3>
-              <p className="text-gray-400 mb-6">For businesses that need maximum conversion power.</p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Unlimited landing pages
+            <div className="pricing-card featured">
+              <div className="badge">Most Popular</div>
+              <div className="pricing-header">
+                <h3 className="pricing-name">Pro</h3>
+                <p className="pricing-description">For growing businesses and marketing teams</p>
+              </div>
+              <div className="pricing-price">
+                <span className="pricing-currency">$</span>79<span className="pricing-period">/mo</span>
+              </div>
+              <ul className="pricing-features">
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> 5 landing pages
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Enterprise analytics
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> 50,000 monthly visitors
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Multiple custom domains
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> Advanced analytics
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Advanced CRO suite
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> Heatmaps & session recordings
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Unlimited A/B testing
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> A/B testing
+                </li>
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> Team collaboration
                 </li>
               </ul>
-              <button className="w-full border border-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition duration-200">
-                Contact Sales
-              </button>
+              <button className="pricing-button btn-primary">Get Started</button>
+            </div>
+
+            <div className="pricing-card">
+              <div className="pricing-header">
+                <h3 className="pricing-name">Business</h3>
+                <p className="pricing-description">For high-volume marketing campaigns</p>
+              </div>
+              <div className="pricing-price">
+                <span className="pricing-currency">$</span>199<span className="pricing-period">/mo</span>
+              </div>
+              <ul className="pricing-features">
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> Unlimited landing pages
+                </li>
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> 250,000 monthly visitors
+                </li>
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> Enterprise analytics
+                </li>
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> Advanced CRO tools
+                </li>
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> Multivariate testing
+                </li>
+                <li className="pricing-feature">
+                  <span className="feature-check">✓</span> Priority support
+                </li>
+              </ul>
+              <button className="pricing-button btn-outline">Get Started</button>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="relative z-10 py-24 px-6 bg-gradient-to-b from-gray-900 to-black">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500 mb-6">
-            Transform How You Build Landing Pages Forever
-          </h2>
-          <p className="text-xl text-gray-300 mb-8">
-            No more struggling with complex page builders. Just tell Langit what you want, and watch it come to life.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-purple-600 to-blue-600 px-8 py-4 rounded-xl text-lg font-bold 
-              hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 ease-in-out">
-              Start Building For Free
-            </button>
-            <button className="border border-gray-700 px-8 py-4 rounded-xl text-lg font-bold 
-              hover:bg-gray-800 transition-all duration-300 ease-in-out">
-              Schedule a Demo
-            </button>
+      <section className="w-full py-24 bg-[#0c0c14]">
+        <div className="container mx-auto px-6">
+          <div className="cta">
+            <div className="cta-glow cta-glow-1"></div>
+            <div className="cta-glow cta-glow-2"></div>
+            <div className="cta-content">
+              <h2 className="cta-title">Ready to <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Transform</span> Your Landing Page Experience?</h2>
+              <p className="cta-text">Join thousands of marketers who've ditched traditional page builders for conversational AI.</p>
+              <form className="cta-form">
+                <input type="email" placeholder="Enter your email" className="cta-input" required />
+                <button type="submit" className="cta-button">Get Early Access</button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 bg-black py-12 px-6 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-6">
-                <div className="bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg p-1">
-                  <span className="text-xl font-bold text-black">L</span>
-                </div>
-                <span className="text-xl font-bold tracking-tight">Langit<span className="text-purple-500">.</span>ai</span>
+      <footer className="w-full py-16 border-t border-white/10">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div className="md:col-span-1">
+              <div className="flex items-center gap-2 text-2xl font-bold mb-4">
+                <div className="text-3xl text-primary">⟡</div>
+                <span className="bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">Langit.ai</span>
               </div>
-              <p className="text-gray-400 text-sm">
-                The future of landing page creation through conversation.
-              </p>
+              <p className="text-gray-400 mb-6">Building the future of conversational landing page creation and optimization.</p>
+              <div className="flex gap-4">
+                <a href="#" className="social-icon">
+                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
+                  </svg>
+                </a>
+                <a href="#" className="social-icon">
+                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+                  </svg>
+                </a>
+                <a href="#" className="social-icon">
+                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"></path>
+                  </svg>
+                </a>
+                <a href="#" className="social-icon">
+                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+                  </svg>
+                </a>
+              </div>
             </div>
-            
+
             <div>
-              <h4 className="text-white font-bold mb-4">Product</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-gray-400 hover:text-white">Features</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white">Pricing</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white">Examples</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white">Documentation</a></li>
+              <h3 className="text-lg font-bold mb-4">Product</h3>
+              <ul className="space-y-3">
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Features</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Testimonials</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Integrations</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">API</a></li>
               </ul>
             </div>
-            
+
             <div>
-              <h4 className="text-white font-bold mb-4">Company</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-gray-400 hover:text-white">About</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white">Blog</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white">Careers</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white">Contact</a></li>
+              <h3 className="text-lg font-bold mb-4">Resources</h3>
+              <ul className="space-y-3">
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Tutorials</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Changelog</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Roadmap</a></li>
               </ul>
             </div>
-            
+
             <div>
-              <h4 className="text-white font-bold mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-gray-400 hover:text-white">Privacy</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white">Terms</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white">Security</a></li>
+              <h3 className="text-lg font-bold mb-4">Company</h3>
+              <ul className="space-y-3">
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Press</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Terms & Privacy</a></li>
               </ul>
             </div>
           </div>
-<div className="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2025 Langit.ai. All rights reserved.
-            </div>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition duration-200">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                </svg>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition duration-200">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition duration-200">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
-                </svg>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition duration-200">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-              </a>
-            </div>
+
+          <div className="pt-8 border-t border-white/10 text-center text-gray-400 text-sm">
+            <p>© 2025 Langit, Inc. All rights reserved. The AI-powered landing page builder that speaks your language.</p>
           </div>
         </div>
       </footer>
-      
-      {/* Join Waitlist Modal - Hidden by default, would be shown with state management */}
-      <div className="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 max-w-md w-full">
-          <h3 className="text-2xl font-bold mb-4">Join the Waitlist</h3>
-          <p className="text-gray-400 mb-6">Be the first to experience the future of landing page creation.</p>
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block text-sm text-gray-400 mb-1">Email</label>
-              <input 
-                type="email" 
-                id="email"
-                placeholder="you@example.com" 
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white" 
-              />
-            </div>
-            <div>
-              <label htmlFor="use-case" className="block text-sm text-gray-400 mb-1">What will you use Langit for?</label>
-              <textarea 
-                id="use-case"
-                placeholder="Tell us a bit about your needs..." 
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white" 
-                rows="3"
-              ></textarea>
-            </div>
-            <button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-3 rounded-lg font-medium">
-              Join Waitlist
-            </button>
-          </div>
-          <button className="mt-4 text-gray-400 hover:text-white text-sm">
-            No thanks, I'll continue browsing
-          </button>
-        </div>
-      </div>
+
+      {/* Add styles */}
+      <style jsx global>{`
+        :root {
+          --primary: #3B82F6;
+          --primary-dark: #2563EB;
+          --secondary: #10B981;
+          --bg-dark: #08080d;
+          --bg-card: #121224;
+          --text-light: #D1D5DB;
+        }
+
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        .bg-grid-pattern {
+          background-image: linear-gradient(var(--bg-dark) 1px, transparent 1px),
+            linear-gradient(90deg, var(--bg-dark) 1px, transparent 1px);
+          background-size: 40px 40px;
+          background-color: rgba(18, 18, 36, 0.15);
+        }
+
+        .bg-glow-primary {
+          background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(16, 185, 129, 0.1) 50%, rgba(8, 8, 13, 0) 70%);
+        }
+        
+        .bg-glow-secondary {
+          background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, rgba(59, 130, 246, 0.1) 50%, rgba(8, 8, 13, 0) 70%);
+        }
+
+        @keyframes pulse {
+          0% { opacity: 0.6; }
+          50% { opacity: 0.8; }
+          100% { opacity: 0.6; }
+        }
+
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+          100% { transform: translateY(0px); }
+        }
+
+        .animate-pulse {
+          animation: pulse 8s infinite;
+        }
+
+        .feature-card {
+          background-color: var(--bg-card);
+          border-radius: 16px;
+          padding: 32px;
+          transition: all 0.3s;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          height: 100%;
+        }
+
+        .feature-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+          border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .feature-icon {
+          width: 60px;
+          height: 60px;
+          background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 24px;
+          color: white;
+          margin-bottom: 24px;
+        }
+
+        .feature-title {
+          font-size: 22px;
+          font-weight: 700;
+          margin-bottom: 16px;
+        }
+
+        .feature-text {
+          color: var(--text-light);
+          line-height: 1.6;
+        }
+
+        .terminal {
+          border-radius: 8px;
+          overflow: hidden;
+          animation: float 6s ease-in-out infinite;
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+        }
+
+        .terminal-header {
+          background: #343546;
+          padding: 10px 15px;
+          display: flex;
+          align-items: center;
+        }
+
+        .terminal-dots {
+          display: flex;
+          gap: 6px;
+        }
+
+        .dot {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+        }
+
+        .dot-red { background-color: #FF5F56; }
+        .dot-yellow { background-color: #FFBD2E; }
+        .dot-green { background-color: #27C93F; }
+
+        .terminal-body {
+          background: #1E1E2E;
+          padding: 20px;
+          font-family: monospace;
+          color: #e2e8f0;
+          line-height: 1.6;
+        }
+
+        .typed-text {
+          color: var(--primary);
+          font-weight: bold;
+        }
+
+        .response-text {
+          color: var(--secondary);
+          font-weight: bold;
+        }
+
+        .cursor {
+          background-color: var(--primary);
+          animation: blink 1s step-end infinite;
+          display: inline-block;
+          width: 10px;
+          height: 18px;
+          vertical-align: text-bottom;
+          margin-left: 2px;
+        }
+
+        @keyframes blink {
+          from, to { opacity: 0; }
+          50% { opacity: 1; }
+        }
+
+        .step {
+          display: flex;
+          gap: 20px;
+        }
+
+        .step-number {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          font-size: 20px;
+          flex-shrink: 0;
+        }
+
+        .step-title {
+          font-size: 22px;
+          font-weight: 700;
+          margin-bottom: 12px;
+        }
+
+        .step-text {
+          color: var(--text-light);
+          line-height: 1.6;
+        }
+
+        .testimonial {
+          background-color: var(--bg-card);
+          border-radius: 16px;
+          padding: 32px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.3s;
+        }
+
+        .testimonial:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+          border-color: var(--primary);
+        }
+
+        .testimonial-text {
+          font-size: 18px;
+          font-style: italic;
+          line-height: 1.6;
+          margin-bottom: 24px;
+          color: var(--text-light);
+        }
+
+        .testimonial-author {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+
+        .author-avatar {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-weight: 700;
+          font-size: 20px;
+        }
+
+        .author-info h4 {
+          font-size: 18px;
+          margin-bottom: 4px;
+        }
+
+        .author-info p {
+          color: var(--text-light);
+          font-size: 14px;
+        }
+
+        .pricing-card {
+          background-color: var(--bg-card);
+          border-radius: 16px;
+          padding: 32px;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+          border-color: var(--primary);
+        }
+
+        .pricing-card.featured {
+          border: 2px solid var(--primary);
+          position: relative;
+          transform: scale(1.05);
+        }
+
+        .pricing-card.featured:hover {
+          transform: translateY(-8px) scale(1.05);
+        }
+
+        .badge {
+          position: absolute;
+          top: -15px;
+          right: 30px;
+          background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+          color: white;
+          padding: 6px 12px;
+          border-radius: 20px;
+          font-weight: 600;
+          font-size: 14px;
+        }
+
+        .pricing-header {
+          margin-bottom: 24px;
+        }
+
+        .pricing-name {
+          font-size: 24px;
+          font-weight: 700;
+          margin-bottom: 8px;
+        }
+
+        .pricing-description {
+          color: var(--text-light);
+        }
+
+        .pricing-price {
+          font-size: 48px;
+          font-weight: 800;
+          margin-bottom: 24px;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+        }
+
+        .pricing-currency {
+          font-size: 24px;
+          margin-right: 4px;
+        }
+
+        .pricing-period {
+          font-size: 16px;
+          color: var(--text-light);
+          margin-left: 4px;
+          align-self: flex-end;
+        }
+
+        .pricing-features {
+          list-style: none;
+          margin-bottom: 32px;
+        }
+
+        .pricing-feature {
+          margin-bottom: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .feature-check {
+          color: var(--secondary);
+          margin-right: 12px;
+        }
+
+        .pricing-button {
+          width: 100%;
+          padding: 14px;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: 16px;
+          cursor: pointer;
+          transition: all 0.3s;
+        }
+
+        .btn-primary {
+          background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+          color: white;
+        }
+
+        .btn-outline {
+          background: transparent;
+          border: 2px solid var(--primary);
+          color: var(--primary);
+        }
+
+        .cta {
+          background: linear-gradient(135deg, rgba(18, 18, 36, 0.9) 0%, rgba(8, 8, 13, 0.9) 100%);
+          border-radius: 24px;
+          padding: 64px;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-glow {
+          position: absolute;
+          width: 300px;
+          height: 300px;
+          border-radius: 50%;
+          z-index: 0;
+          filter: blur(40px);
+        }
+
+        .cta-glow-1 {
+          top: -100px;
+          right: -100px;
+          background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(16, 185, 129, 0.1) 50%, rgba(0, 0, 0, 0) 70%);
+        }
+
+        .cta-glow-2 {
+          bottom: -100px;
+          left: -100px;
+          background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, rgba(59, 130, 246, 0.1) 50%, rgba(0, 0, 0, 0) 70%);
+        }
+
+        .cta-content {
+          position: relative;
+          z-index: 1;
+        }
+
+        .cta-title {
+          font-size: 36px;
+          font-weight: 800;
+          margin-bottom: 24px;
+        }
+
+        .cta-text {
+          font-size: 20px;
+          color: var(--text-light);
+          max-width: 600px;
+          margin: 0 auto 40px;
+        }
+
+        .cta-form {
+          display: flex;
+          max-width: 500px;
+          margin: 0 auto;
+        }
+
+        .cta-input {
+          flex: 1;
+          padding: 16px 20px;
+          border-radius: 8px 0 0 8px;
+          border: none;
+          font-size: 16px;
+          background-color: rgba(255, 255, 255, 0.1);
+          color: white;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-right: none;
+        }
+
+        .cta-input:focus {
+          outline: none;
+          border-color: var(--primary);
+        }
+
+        .cta-input::placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        .cta-button {
+          padding: 16px 30px;
+          background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+          color: white;
+          font-weight: 600;
+          border: none;
+          border-radius: 0 8px 8px 0;
+          cursor: pointer;
+          transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+          background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary) 100%);
+          box-shadow: 0 15px 20px -3px rgba(59, 130, 246, 0.4);
+        }
+
+        .social-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: rgba(255, 255, 255, 0.1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+          background-color: var(--primary);
+          transform: translateY(-4px);
+        }
+
+        @media (max-width: 768px) {
+          .cta {
+            padding: 40px 20px;
+          }
+
+          .cta-form {
+            flex-direction: column;
+          }
+
+          .cta-input {
+            border-radius: 8px;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 16px;
+          }
+
+          .cta-button {
+            border-radius: 8px;
+          }
+
+          .pricing-card.featured {
+            transform: scale(1);
+          }
+
+          .pricing-card.featured:hover {
+            transform: translateY(-8px);
+          }
+        }
+      `}</style>
     </div>
   );
 }
