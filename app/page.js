@@ -40,10 +40,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative bg-[#08080d] text-white min-h-screen flex flex-col items-center">
+    <div className="relative bg-[#08080d] text-white">
       {/* Background effects - removed grid pattern */}
-      <div className="absolute top-[-20vh] right-[-10vw] w-[70vw] h-[70vh] rounded-full bg-glow-primary filter blur-[60px] opacity-60 z-0 animate-pulse"></div>
-      <div className="absolute bottom-[-20vh] left-[-10vw] w-[70vw] h-[70vh] rounded-full bg-glow-secondary filter blur-[60px] opacity-60 z-0 animate-pulse"></div>
+      <div className="fixed top-[-20vh] right-[-10vw] w-[70vw] h-[70vh] rounded-full bg-glow-primary filter blur-[60px] opacity-60 z-0 animate-pulse"></div>
+      <div className="fixed bottom-[-20vh] left-[-10vw] w-[70vw] h-[70vh] rounded-full bg-glow-secondary filter blur-[60px] opacity-60 z-0 animate-pulse"></div>
 
       {/* Header */}
       <header className="fixed top-0 left-0 w-full py-6 z-50 backdrop-blur-md bg-[#08080d]/80 border-b border-white/10">
@@ -416,7 +416,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full py-12 border-t border-white/10 mt-auto">
+      <footer className="w-full pt-12 pb-6 border-t border-white/10">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div className="md:col-span-1">
@@ -547,12 +547,24 @@ export default function Home() {
 
         /* Add additional styles to prevent overflow */
         #__next, body, html {
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
+          min-height: 100%;
+          height: 100%;
           width: 100%;
           overflow-x: hidden;
+          margin: 0;
+          padding: 0;
           position: relative;
+        }
+        
+        /* Fix page layout and scrolling issues */
+        body {
+          display: block;
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
+        
+        #__next {
+          display: block;
         }
 
         .feature-card {
