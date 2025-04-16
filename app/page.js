@@ -23,6 +23,20 @@ export default function Home() {
         setMenuOpen(false);
       });
     });
+    
+    // Fix grid lines in SVG/icons by adding additional CSS
+    const style = document.createElement('style');
+    style.textContent = `
+      svg, .feature-icon, .step-number, .author-avatar {
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style);
+    };
   }, []);
 
   return (
@@ -37,7 +51,7 @@ export default function Home() {
         <div className="container mx-auto px-6 flex justify-between items-center">
           <a href="#" className="flex items-center gap-2 text-2xl font-bold">
             <div className="text-3xl text-primary">⟡</div>
-            <span className="bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">Langit.ai</span>
+            <span className="text-white">Langit.ai</span>
           </a>
 
           <button 
@@ -64,37 +78,39 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-6 pt-40 pb-20 relative z-10">
-        <div className="max-w-2xl">
-          <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-            Chat Your Way to Landing Page <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Perfection</span>
-          </h1>
-          <p className="text-xl text-gray-300 mt-6">
-            Langit is the first AI platform that lets you build & optimize high-converting landing pages through simple conversations. No code. No design skills. Just tell it what you want.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 mt-8">
-            <button className="px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg shadow-primary/30 hover:translate-y-[-2px] transition-all font-semibold text-lg">Start For Free</button>
-            <button className="px-8 py-4 rounded-xl border-2 border-primary text-primary hover:bg-primary/10 transition-colors font-semibold text-lg">See Demo</button>
-          </div>
-        </div>
-
-        {/* Terminal Demo */}
-        <div className="terminal mt-16 max-w-xl w-full mx-auto lg:absolute lg:right-6 lg:top-40 lg:mt-0">
-          <div className="terminal-header">
-            <div className="terminal-dots">
-              <div className="dot dot-red"></div>
-              <div className="dot dot-yellow"></div>
-              <div className="dot dot-green"></div>
+      <section className="container mx-auto px-6 pt-40 pb-24 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
+              Chat Your Way to Landing Page <span className="text-primary">Perfection</span>
+            </h1>
+            <p className="text-xl text-gray-300 mt-6">
+              Langit is the first AI platform that lets you build & optimize high-converting landing pages through simple conversations. No code. No design skills. Just tell it what you want.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              <button className="px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg shadow-primary/30 hover:translate-y-[-2px] transition-all font-semibold text-lg">Start For Free</button>
+              <button className="px-8 py-4 rounded-xl border-2 border-primary text-primary hover:bg-primary/10 transition-colors font-semibold text-lg">See Demo</button>
             </div>
           </div>
-          <div className="terminal-body">
-            <div>
-              <span className="typed-text">You:</span> Change the hero button to red<br />
-              <span className="response-text">Langit:</span> Updated button color to red. Anything else?<br /><br />
-              <span className="typed-text">You:</span> Add a testimonial section below features<br />
-              <span className="response-text">Langit:</span> Added testimonial section with 3 cards. Need specific quotes?<br /><br />
-              <span className="typed-text">You:</span> Why isn't this converting well?<br />
-              <span className="response-text">Langit:</span> Based on heatmap data, visitors aren't scrolling past the hero. I recommend making your value prop clearer and moving your sign-up form above the fold.<span className="cursor"></span>
+
+          {/* Terminal Demo */}
+          <div className="terminal w-full max-w-xl mx-auto">
+            <div className="terminal-header">
+              <div className="terminal-dots">
+                <div className="dot dot-red"></div>
+                <div className="dot dot-yellow"></div>
+                <div className="dot dot-green"></div>
+              </div>
+            </div>
+            <div className="terminal-body">
+              <div>
+                <span className="typed-text">You:</span> Change the hero button to red<br />
+                <span className="response-text">Langit:</span> Updated button color to red. Anything else?<br /><br />
+                <span className="typed-text">You:</span> Add a testimonial section below features<br />
+                <span className="response-text">Langit:</span> Added testimonial section with 3 cards. Need specific quotes?<br /><br />
+                <span className="typed-text">You:</span> Why isn't this converting well?<br />
+                <span className="response-text">Langit:</span> Based on heatmap data, visitors aren't scrolling past the hero. I recommend making your value prop clearer and moving your sign-up form above the fold.<span className="cursor"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -105,7 +121,7 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">
-              Finally, Landing Pages Built on <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Your Terms</span>
+              Finally, Landing Pages Built on <span className="text-primary">Your Terms</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               No more wrestling with clunky editors or complex templates. Just tell Langit what you want—in plain language.
@@ -159,7 +175,7 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">
-              The <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Intelligence</span> Behind the Interface
+              The <span className="text-primary">Intelligence</span> Behind the Interface
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Langit doesn't just generate pages—it thinks critically about conversion optimization.
@@ -231,7 +247,7 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">
-              What Our <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Users Say</span>
+              What Our <span className="text-primary">Users Say</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Marketers and founders are transforming their landing page workflows with Langit.
@@ -280,7 +296,7 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">
-              Simple, <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Transparent</span> Pricing
+              Simple, <span className="text-primary">Transparent</span> Pricing
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               No complicated tiers. Choose the plan that works for your business.
@@ -389,7 +405,7 @@ export default function Home() {
             <div className="cta-glow cta-glow-1"></div>
             <div className="cta-glow cta-glow-2"></div>
             <div className="cta-content">
-              <h2 className="cta-title">Ready to <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Transform</span> Your Landing Page Experience?</h2>
+              <h2 className="cta-title">Ready to <span className="text-primary">Transform</span> Your Landing Page Experience?</h2>
               <p className="cta-text">Join thousands of marketers who've ditched traditional page builders for conversational AI.</p>
               <form className="cta-form">
                 <input type="email" placeholder="Enter your email" className="cta-input" required />
@@ -401,13 +417,13 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full py-16 border-t border-white/10">
+      <footer className="w-full py-12 border-t border-white/10">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div className="md:col-span-1">
               <div className="flex items-center gap-2 text-2xl font-bold mb-4">
                 <div className="text-3xl text-primary">⟡</div>
-                <span className="bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">Langit.ai</span>
+                <span className="text-white">Langit.ai</span>
               </div>
               <p className="text-gray-400 mb-6">Building the future of conversational landing page creation and optimization.</p>
               <div className="flex gap-4">
@@ -468,7 +484,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="pt-8 border-t border-white/10 text-center text-gray-400 text-sm">
+          <div className="pt-4 border-t border-white/10 text-center text-gray-400 text-sm">
             <p>© 2025 Langit, Inc. All rights reserved. The AI-powered landing page builder that speaks your language.</p>
           </div>
         </div>
@@ -540,7 +556,7 @@ export default function Home() {
         .feature-icon {
           width: 60px;
           height: 60px;
-          background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+          background-color: var(--primary);
           border-radius: 12px;
           display: flex;
           align-items: center;
@@ -548,6 +564,11 @@ export default function Home() {
           font-size: 24px;
           color: white;
           margin-bottom: 24px;
+          position: relative;
+          overflow: hidden; 
+          transform: translate3d(0, 0, 0);
+          isolation: isolate;
+          will-change: transform;
         }
 
         .feature-title {
@@ -632,7 +653,7 @@ export default function Home() {
           width: 48px;
           height: 48px;
           border-radius: 50%;
-          background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+          background-color: var(--primary);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -684,7 +705,7 @@ export default function Home() {
           width: 48px;
           height: 48px;
           border-radius: 50%;
-          background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+          background-color: var(--primary);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -730,11 +751,11 @@ export default function Home() {
           transform: translateY(-8px) scale(1.05);
         }
 
-        .badge {
+                  .badge {
           position: absolute;
           top: -15px;
           right: 30px;
-          background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+          background-color: var(--primary);
           color: white;
           padding: 6px 12px;
           border-radius: 20px;
