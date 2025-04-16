@@ -521,20 +521,41 @@ export default function Home() {
           background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, rgba(59, 130, 246, 0.1) 50%, rgba(8, 8, 13, 0) 70%);
         }
 
+        /* Animation styles that could be causing scrolling issues */
         @keyframes pulse {
-          0% { opacity: 0.6; }
-          50% { opacity: 0.8; }
-          100% { opacity: 0.6; }
+          0% { opacity: 0.5; }
+          50% { opacity: 0.7; }
+          100% { opacity: 0.5; }
         }
 
         @keyframes float {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
-          100% { transform: translateY(0px); }
+          0% { transform: translate3d(0, 0, 0); }
+          50% { transform: translate3d(0, -15px, 0); }
+          100% { transform: translate3d(0, 0, 0); }
         }
 
         .animate-pulse {
-          animation: pulse 8s infinite;
+          animation: pulse 8s ease-in-out infinite;
+        }
+
+        /* Prevent hardware acceleration conflicts */
+        * {
+          -webkit-overflow-scrolling: touch;
+        }
+
+        /* Fix body scrolling */
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          overflow-x: hidden;
+          scroll-behavior: auto !important; /* Override smooth scroll that might cause issues */
+        }
+        
+        body {
+          overflow-y: auto;
+          position: relative;
+          -webkit-font-smoothing: antialiased;
         }
 
         /* Hide gridlines on all elements with transforms */
