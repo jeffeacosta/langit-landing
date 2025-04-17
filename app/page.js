@@ -402,6 +402,11 @@ export default function Home() {
               <h3 className="text-xl font-bold mb-4">Is Langit SEO-friendly?</h3>
               <p className="text-gray-300">Yes! All Langit pages are built with SEO best practices in mind. They load quickly and are structured to help you rank higher in search results.</p>
             </div>
+
+        <div className="bg-[#121224] rounded-xl p-8 border border-white/10">
+              <h3 className="text-xl font-bold mb-4">Can I see how my landing page is doing??</h3>
+              <p className="text-gray-300">Yes. Langit gives you basic analytics like how many people visited, how long they stayed, and what parts they clicked on. It’s included in both the free and pro plans.</p>
+            </div>
           </div>
         </div>
       </section>
