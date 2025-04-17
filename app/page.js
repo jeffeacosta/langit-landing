@@ -87,24 +87,6 @@ export default function Home() {
                 <span className="text-emerald-500 font-bold mt-2 block">Langit:</span> Centered the headline and changed it to "Find Your Inner Peace". The page is looking great!<span className="inline-block w-2.5 h-5 bg-blue-500 ml-1 animate-blink"></span>
               </div>
             </div>
-            <div className="bg-[#121224] p-5">
-              <div className="w-full h-[240px] rounded-lg overflow-hidden relative border border-white/10 shadow-inner">
-                <div className="absolute inset-0 bg-gradient-to-b from-purple-600/30 to-green-600/30"></div>
-                <div className="absolute top-0 left-0 w-full p-6 text-center">
-                  <h2 className="text-3xl font-bold text-white mb-4">Find Your Inner Peace</h2>
-                  <p className="text-white/90 mb-6 max-w-sm mx-auto">Discover tranquility and balance at Serenity Yoga Studio</p>
-                  <button className="px-6 py-2 bg-purple-600 text-white rounded-lg shadow-lg">Book a Class</button>
-                </div>
-                <div className="absolute bottom-4 left-4 flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-purple-600/90 flex items-center justify-center shadow-lg">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                  </div>
-                  <div className="text-white/80 text-xs">Preview Mode</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
