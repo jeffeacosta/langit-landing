@@ -59,7 +59,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Chat Demo */}
+     {/* Chat Demo */}
           <div className="w-full max-w-xl mx-auto rounded-lg overflow-hidden shadow-2xl">
             <div className="bg-[#343546] px-4 py-3 flex items-center">
               <div className="flex gap-2">
@@ -69,22 +69,18 @@ export default function Home() {
               </div>
               <div className="ml-3 text-xs text-gray-300">Langit Chat</div>
             </div>
-            <div className="bg-[#1E1E2E] p-5 font-mono text-gray-200 text-sm leading-relaxed max-h-[400px] overflow-y-auto">
-              <div className="mb-4">
+            <div className="bg-[#1E1E2E] p-5 font-mono text-gray-200 text-sm leading-relaxed">
+              <div className="mb-3">
                 <span className="text-blue-500 font-bold">You:</span> Help me build a landing page for my yoga studio<br />
-                <span className="text-emerald-500 font-bold mt-2 block">Langit:</span> Created a basic landing page for your yoga studio. What kind of color scheme would you prefer?
+                <span className="text-emerald-500 font-bold mt-1 block">Langit:</span> Created a basic landing page for your yoga studio. What color scheme would you prefer?
               </div>
-              <div className="mb-4">
+              <div className="mb-3">
                 <span className="text-blue-500 font-bold">You:</span> Make it purple and green - serene vibes<br />
-                <span className="text-emerald-500 font-bold mt-2 block">Langit:</span> Updated to a purple and green color scheme. Want to add a hero image?
+                <span className="text-emerald-500 font-bold mt-1 block">Langit:</span> Updated to a purple and green scheme. Want to add a hero image?
               </div>
-              <div className="mb-4">
-                <span className="text-blue-500 font-bold">You:</span> Yes, add a image of someone doing yoga on a beach<br />
-                <span className="text-emerald-500 font-bold mt-2 block">Langit:</span> Added a beach yoga hero image. Should I include a section for class schedules?
-              </div>
-              <div className="mb-4">
-                <span className="text-blue-500 font-bold">You:</span> Perfect. Center the headline and make it "Find Your Inner Peace"<br />
-                <span className="text-emerald-500 font-bold mt-2 block">Langit:</span> Centered the headline and changed it to "Find Your Inner Peace". The page is looking great!<span className="inline-block w-2.5 h-5 bg-blue-500 ml-1 animate-blink"></span>
+              <div className="mb-3">
+                <span className="text-blue-500 font-bold">You:</span> Yes, add an image of someone doing yoga<br />
+                <span className="text-emerald-500 font-bold mt-1 block">Langit:</span> Added the yoga image. The page is looking great!<span className="inline-block w-2.5 h-5 bg-blue-500 ml-1 animate-blink"></span>
               </div>
             </div>
           </div>
