@@ -418,7 +418,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Feature Comparison */}
+   {/* Feature Comparison */}
       <section className="w-full py-24 bg-[#0c0c14]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
@@ -430,7 +430,8 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="overflow-x-auto">
+          {/* Desktop version - hidden on mobile */}
+          <div className="hidden md:block overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
                 <tr>
@@ -467,6 +468,89 @@ export default function Home() {
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          {/* Mobile version - cards instead of table */}
+          <div className="md:hidden space-y-6">
+            <div className="bg-[#121224] rounded-xl overflow-hidden border border-white/10">
+              <div className="bg-blue-500 text-white py-3 px-4 font-bold text-center">
+                Time to Build
+              </div>
+              <div className="grid grid-cols-2">
+                <div className="p-4 bg-blue-500/10 text-blue-500 font-bold text-center">
+                  <div className="text-sm uppercase mb-1 text-gray-400">Langit</div>
+                  Minutes
+                </div>
+                <div className="p-4 text-gray-300 text-center">
+                  <div className="text-sm uppercase mb-1 text-gray-400">Traditional</div>
+                  Hours to Days
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-[#121224] rounded-xl overflow-hidden border border-white/10">
+              <div className="bg-blue-500 text-white py-3 px-4 font-bold text-center">
+                Learning Curve
+              </div>
+              <div className="grid grid-cols-2">
+                <div className="p-4 bg-blue-500/10 text-blue-500 font-bold text-center">
+                  <div className="text-sm uppercase mb-1 text-gray-400">Langit</div>
+                  None (Just Chat)
+                </div>
+                <div className="p-4 text-gray-300 text-center">
+                  <div className="text-sm uppercase mb-1 text-gray-400">Traditional</div>
+                  Steep
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#121224] rounded-xl overflow-hidden border border-white/10">
+              <div className="bg-blue-500 text-white py-3 px-4 font-bold text-center">
+                Design Skills
+              </div>
+              <div className="grid grid-cols-2">
+                <div className="p-4 bg-blue-500/10 text-blue-500 font-bold text-center">
+                  <div className="text-sm uppercase mb-1 text-gray-400">Langit</div>
+                  None
+                </div>
+                <div className="p-4 text-gray-300 text-center">
+                  <div className="text-sm uppercase mb-1 text-gray-400">Traditional</div>
+                  Some
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#121224] rounded-xl overflow-hidden border border-white/10">
+              <div className="bg-blue-500 text-white py-3 px-4 font-bold text-center">
+                Editing Experience
+              </div>
+              <div className="grid grid-cols-2">
+                <div className="p-4 bg-blue-500/10 text-blue-500 font-bold text-center">
+                  <div className="text-sm uppercase mb-1 text-gray-400">Langit</div>
+                  Conversational
+                </div>
+                <div className="p-4 text-gray-300 text-center">
+                  <div className="text-sm uppercase mb-1 text-gray-400">Traditional</div>
+                  Drag & Drop
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#121224] rounded-xl overflow-hidden border border-white/10">
+              <div className="bg-blue-500 text-white py-3 px-4 font-bold text-center">
+                Mobile Optimization
+              </div>
+              <div className="grid grid-cols-2">
+                <div className="p-4 bg-blue-500/10 text-blue-500 font-bold text-center">
+                  <div className="text-sm uppercase mb-1 text-gray-400">Langit</div>
+                  Automatic
+                </div>
+                <div className="p-4 text-gray-300 text-center">
+                  <div className="text-sm uppercase mb-1 text-gray-400">Traditional</div>
+                  Manual Adjustments
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
