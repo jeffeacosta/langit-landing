@@ -335,7 +335,7 @@ export default function Home() {
             <div className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 transition-all hover:shadow-lg hover:translate-y-[-4px]">
     <div className="h-48 bg-gray-200 overflow-hidden">
       <img 
-        src="/order-confirmation.jpg" 
+        src="/confirmation-email.jpg" 
         alt="Transactional Template" 
         className="w-full h-full object-cover transition-transform hover:scale-105"
         onError={(e) => {
