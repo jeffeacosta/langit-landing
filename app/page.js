@@ -286,50 +286,74 @@ export default function Home() {
   </div>
             
             {/* Template Card 2 */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 transition-all hover:shadow-lg hover:translate-y-[-4px]">
-              <div className="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
-                Newsletter Template
-              </div>
-              <div className="p-6">
-                <div className="text-blue-600 text-xs font-semibold uppercase tracking-wider mb-2">Newsletter</div>
-                <h3 className="font-bold text-lg mb-4">Monthly Update</h3>
-                <div className="flex gap-2">
-                  <button className="flex-1 py-2 bg-blue-600 text-white rounded-md text-sm font-medium">Use</button>
-                  <button className="flex-1 py-2 bg-gray-100 text-gray-700 rounded-md text-sm font-medium">Preview</button>
-                </div>
-              </div>
-            </div>
+             <div className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 transition-all hover:shadow-lg hover:translate-y-[-4px]">
+    <div className="h-48 bg-gray-200 overflow-hidden">
+      <img 
+        src="/newsletter-email.png" 
+        alt="Newsletter Template" 
+        className="w-full h-full object-cover transition-transform hover:scale-105"
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 100 100'%3E%3Crect fill='%23f3f4f6' width='100' height='100'/%3E%3Ctext fill='%239ca3af' font-family='Arial' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ENewsletter Template%3C/text%3E%3C/svg%3E";
+        }}
+      />
+    </div>
+    <div className="p-6">
+      <div className="text-blue-600 text-xs font-semibold uppercase tracking-wider mb-2">Newsletter</div>
+      <h3 className="font-bold text-lg mb-4">Monthly Update</h3>
+      <div className="flex gap-2">
+        <button className="flex-1 py-2 bg-blue-600 text-white rounded-md text-sm font-medium">Use</button>
+        <button className="flex-1 py-2 bg-gray-100 text-gray-700 rounded-md text-sm font-medium">Preview</button>
+      </div>
+    </div>
+  </div>
             
             {/* Template Card 3 */}
             <div className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 transition-all hover:shadow-lg hover:translate-y-[-4px]">
-              <div className="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
-                Promotion Template
-              </div>
-              <div className="p-6">
-                <div className="text-blue-600 text-xs font-semibold uppercase tracking-wider mb-2">Marketing</div>
-                <h3 className="font-bold text-lg mb-4">Product Launch</h3>
-                <div className="flex gap-2">
-                  <button className="flex-1 py-2 bg-blue-600 text-white rounded-md text-sm font-medium">Use</button>
-                  <button className="flex-1 py-2 bg-gray-100 text-gray-700 rounded-md text-sm font-medium">Preview</button>
-                </div>
-              </div>
-            </div>
+    <div className="h-48 bg-gray-200 overflow-hidden">
+      <img 
+        src="/product-email.png" 
+        alt="Promotion Template" 
+        className="w-full h-full object-cover transition-transform hover:scale-105"
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 100 100'%3E%3Crect fill='%23f3f4f6' width='100' height='100'/%3E%3Ctext fill='%239ca3af' font-family='Arial' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EPromotion Template%3C/text%3E%3C/svg%3E";
+        }}
+      />
+    </div>
+    <div className="p-6">
+      <div className="text-blue-600 text-xs font-semibold uppercase tracking-wider mb-2">Marketing</div>
+      <h3 className="font-bold text-lg mb-4">Product Launch</h3>
+      <div className="flex gap-2">
+        <button className="flex-1 py-2 bg-blue-600 text-white rounded-md text-sm font-medium">Use</button>
+        <button className="flex-1 py-2 bg-gray-100 text-gray-700 rounded-md text-sm font-medium">Preview</button>
+      </div>
+    </div>
+  </div>
             
             {/* Template Card 4 */}
             <div className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 transition-all hover:shadow-lg hover:translate-y-[-4px]">
-              <div className="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
-                Transactional Template
-              </div>
-              <div className="p-6">
-                <div className="text-blue-600 text-xs font-semibold uppercase tracking-wider mb-2">Transactional</div>
-                <h3 className="font-bold text-lg mb-4">Order Confirmation</h3>
-                <div className="flex gap-2">
-                  <button className="flex-1 py-2 bg-blue-600 text-white rounded-md text-sm font-medium">Use</button>
-                  <button className="flex-1 py-2 bg-gray-100 text-gray-700 rounded-md text-sm font-medium">Preview</button>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div className="h-48 bg-gray-200 overflow-hidden">
+      <img 
+        src="/order-confirmation.jpg" 
+        alt="Transactional Template" 
+        className="w-full h-full object-cover transition-transform hover:scale-105"
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 100 100'%3E%3Crect fill='%23f3f4f6' width='100' height='100'/%3E%3Ctext fill='%239ca3af' font-family='Arial' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ETransactional Template%3C/text%3E%3C/svg%3E";
+        }}
+      />
+    </div>
+    <div className="p-6">
+      <div className="text-blue-600 text-xs font-semibold uppercase tracking-wider mb-2">Transactional</div>
+      <h3 className="font-bold text-lg mb-4">Order Confirmation</h3>
+      <div className="flex gap-2">
+        <button className="flex-1 py-2 bg-blue-600 text-white rounded-md text-sm font-medium">Use</button>
+        <button className="flex-1 py-2 bg-gray-100 text-gray-700 rounded-md text-sm font-medium">Preview</button>
+      </div>
+    </div>
+  </div>
+</div>
           
           <div className="text-center mt-12">
             <button className="px-8 py-3 rounded-lg border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition-colors font-semibold">
