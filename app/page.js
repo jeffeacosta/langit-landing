@@ -315,7 +315,7 @@ export default function Home() {
                 <p className="text-gray-400">For creators and small businesses</p>
               </div>
               <div className="text-center text-5xl font-extrabold mb-6">
-                <span className="text-2xl align-top">$</span>12<span className="text-xl font-normal text-gray-400">/mo</span>
+                <span className="text-2xl align-top">$</span>20<span className="text-xl font-normal text-gray-400">/mo</span>
               </div>
               <ul className="space-y-4 mb-8">
                 <li className="flex items-center">
