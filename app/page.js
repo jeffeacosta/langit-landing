@@ -48,7 +48,7 @@ export default function Home() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight text-gray-900">
-              Build beautiful emails by <span className="text-blue-600">describing</span> them
+              Build emails 10x faster by <span className="text-blue-600">chatting</span> with AI
             </h1>
             <p className="text-xl text-gray-600 mt-6">
               No more drag-and-drop. Langit designs clean, responsive emails from plain English with conversational AI and intuitive design tools.
