@@ -1,11 +1,18 @@
 "use client";
 
+import Head from 'next/head';
 import { useState } from "react";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
+    <>
+      <Head>
+        <title>Langit | AI Email Design Tool - Build Emails 10x Faster</title>
+        <meta name="description" content="Create stunning responsive emails 10x faster with Langit, the AI-powered conversational email builder. Export to Mailchimp, Klaviyo, and more." />
+        <meta name="robots" content="index, follow" />
+      </Head>
     <div className="bg-white text-gray-800 min-h-screen">
       {/* Background elements */}
       <div className="fixed top-[-20vh] right-[-10vw] w-[70vw] h-[70vh] rounded-full bg-blue-500/10 blur-[60px] opacity-40 z-0"></div>
