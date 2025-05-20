@@ -734,17 +734,17 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-bold mb-4 text-gray-900">Subscribe</h3>
               <p className="text-gray-500 mb-4">Stay updated with the latest features and releases</p>
-              <form className="flex">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-grow py-2 px-4 rounded-l-lg border border-gray-300 text-gray-800 focus:outline-none focus:border-blue-600 transition-colors text-sm"
-                  required
-                />
-                <button type="submit" className="py-2 px-4 bg-blue-600 text-white font-medium rounded-r-lg text-sm">
-                  Subscribe
-                </button>
-              </form>
+              <form className="flex w-full">
+  <input
+    type="email"
+    placeholder="Your email"
+    className="w-2/3 py-2 px-4 rounded-l-lg border border-gray-300 text-gray-800 focus:outline-none focus:border-blue-600 transition-colors text-sm"
+    required
+  />
+  <button type="submit" className="w-1/3 py-2 px-4 bg-blue-600 text-white font-medium rounded-r-lg text-sm">
+    Subscribe
+  </button>
+</form>
             </div>
           </div>
 
