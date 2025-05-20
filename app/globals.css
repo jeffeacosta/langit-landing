@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Add this to fix the overflow issues */
+@layer base {
+  html, body {
+    @apply overflow-x-hidden w-full;
+  }
+}
+
 /* Global Dark Mode Styles */
 body {
   @apply bg-dark text-textLight;
